@@ -18,9 +18,24 @@ interface Prop {
   index: number;
 }
 
-function AnimeCard({ anime }: Prop) {
+const variants ={
+  hidden:{opacity:'0'},
+  visible:{opacity:'1'}
+}
+function AnimeCard({ anime,index }: Prop) {
+  
   return (
-    <MotionDiv className="max-w-sm rounded relative w-full">
+    <MotionDiv 
+    variants={variants}
+    initial='hidden'
+    animate='visible'
+    transition={{
+ease:'easeInOut',
+duration:0.5,
+delay:index*0.25
+    }}
+    viewport={{amount:0}}
+    className="max-w-sm rounded relative w-full">
       <div className="relative w-full h-[37vh]">
         <Image
           src={`https://shikimori.one${anime.image.original}`}
